@@ -4,6 +4,7 @@ import { ParamListBase } from "@react-navigation/native"
 import { NativeStackNavigationProp } from "react-native-screens/native-stack"
 import { Button, Header, Screen, Text, Wallpaper } from "../../components"
 import { color, spacing } from "../../theme"
+import { observer } from "mobx-react-lite"
 const bowserLogo = require("./bowser.png")
 
 const FULL: ViewStyle = { flex: 1 }
@@ -79,7 +80,7 @@ export interface WelcomeScreenProps {
   navigation: NativeStackNavigationProp<ParamListBase>
 }
 
-export const WelcomeScreen: React.FunctionComponent<WelcomeScreenProps> = props => {
+export const WelcomeScreen: React.FunctionComponent<WelcomeScreenProps> = observer(props => {
   const nextScreen = React.useMemo(() => () => props.navigation.navigate("demo"), [
     props.navigation,
   ])
@@ -96,10 +97,7 @@ export const WelcomeScreen: React.FunctionComponent<WelcomeScreenProps> = props 
         </Text>
         <Text style={TITLE} preset="header" tx="welcomeScreen.readyForLaunch" />
         <Image source={bowserLogo} style={BOWSER} />
-        <Text style={CONTENT}>
-          This probably isn't what your app is going to look like. Unless your designer handed you
-          this screen and, in that case, congrats! You're ready to ship.
-        </Text>
+        <Text style={CONTENT}>{foo.bar}</Text>
         <Text style={CONTENT}>
           For everyone else, this is where you'll see a live preview of your fully functioning app
           using Ignite.
@@ -117,4 +115,4 @@ export const WelcomeScreen: React.FunctionComponent<WelcomeScreenProps> = props 
       </SafeAreaView>
     </View>
   )
-}
+})
